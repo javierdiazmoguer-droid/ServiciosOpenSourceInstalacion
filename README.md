@@ -60,8 +60,8 @@ sudo apt install jitsi-meet
 
 ## Configuración Jitsi meet
 
-Nos pide el nombre de equipo:
+configuración de jitsi-videobridge2
 meet.sansebastia.org
 
 Nos pide Configuración de jitsi-meet-web-config
-Elegimos Le
+Elegimos Crear un certificado autofirmado
