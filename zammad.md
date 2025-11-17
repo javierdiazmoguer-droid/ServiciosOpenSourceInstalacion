@@ -2,7 +2,7 @@
 
 ## Requisitos previos
 - Ubuntu 24.04 LTS
-- Mínimo 4GB RAM
+- Mínimo 6GB o 10GB RAM si quieres Elasticsearch en el mismo servidor
 - 2 CPUs
 - 20GB espacio en disco
 - Privilegios de superusuario
