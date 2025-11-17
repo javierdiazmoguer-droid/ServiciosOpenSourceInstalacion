@@ -37,10 +37,9 @@ sudo systemctl status mongod
 
 ### 5. Descargar Rocket.Chat
 ```bash
-cd /opt
-sudo wget https://releases.rocket.chat/latest/download/tar.gz -O rocket.chat.tar.gz
-sudo tar -xzf rocket.chat.tar.gz
-sudo mv bundle rocket.chat
+sudo mkdir /opt/Rocket.Chat
+sudo curl -L https://releases.rocket.chat/latest/download -O rocket.chat.tar.gz
+sudo tar -xvzf rocket.chat.tgz -C /opt/Rocket.Chat --strip-components=1
 ```
 
 ### 6. Instalar dependencias de Node
@@ -51,6 +50,7 @@ sudo npm install
 
 ### 7. Configurar Rocket.Chat
 ```bash
+sudo useradd -r -m -U -d /opt/rocketchat -s /usr/sbin/nologin rocketchat
 cd /opt/rocket.chat
 sudo chown -R rocketchat:rocketchat /opt/rocket.chat
 ```
