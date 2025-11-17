@@ -6,7 +6,7 @@ Resumen rápido: guía para instalar Strapi (v4+) en Ubuntu 24.04, desde un ento
 - Ubuntu 24.04
 - Usuario con sudo
 - Puerto 1337 libre (por defecto)
-- Node.js (recomendado LTS 18 o 20)
+- Node.js (solo compatible LTS 20/22)
 - npm (v9+) o Yarn
 - (Producción) PostgreSQL, Nginx, Certbot, PM2
 
