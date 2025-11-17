@@ -66,8 +66,6 @@ sudo ufw allow 22/tcp
 sudo ufw allow 3478/udp
 sudo ufw allow 5349/tcp
 sudo ufw enable
-
-
 ```
 ## Instalar Jitsi meet
 
@@ -81,7 +79,7 @@ meet.sansebastia.org
 
 Nos pide Configuración de jitsi-meet-web-config
 Elegimos Crear un certificado autofirmado
-
+```
 
 ```bash
 sudo systemctl restart prosody

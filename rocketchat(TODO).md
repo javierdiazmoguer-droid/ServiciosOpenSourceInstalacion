@@ -3,8 +3,9 @@
 ## Requisitos previos
 - Ubuntu 22.04 (jammy jellyfish)
 - Acceso root o sudo
-- Mínimo 2GB RAM
-- 10GB espacio en disco
+- CPU: 4 núcleos
+- Mínimo 2GB RAM / Recomendado 8GB
+- Espacio recomendado: 30GB (20GB Rocket Chat + 10GB MongoDB)
 
 ## Pasos de instalación
 
@@ -24,7 +25,14 @@ curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt install -y nodejs
 ```
 
-### 4. Instalar MongoDB
+### 3. Instalar Deno
+```bash
+curl -fsSL https://deno.land/install.sh | sh
+# Versiones de Deno compatible >=1.37.1 y <2.0.0
+```
+
+
+### 5. Instalar MongoDB
 ```bash
 wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo gpg --dearmor -o /usr/share/keyrings/mongodb-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list 
@@ -35,27 +43,27 @@ sudo systemctl enable mongodb
 sudo systemctl status mongod 
 ```
 
-### 5. Descargar Rocket.Chat
+### 6. Descargar Rocket.Chat
 ```bash
 sudo mkdir /opt/Rocket.Chat
 sudo curl -L https://releases.rocket.chat/latest/download -O rocket.chat.tar.gz
 sudo tar -xvzf rocket.chat.tgz -C /opt/Rocket.Chat --strip-components=1
 ```
 
-### 6. Instalar dependencias de Node
+### 7. Instalar dependencias de Node
 ```bash
 cd /opt/rocket.chat/programs/server
 sudo npm install
 ```
 
-### 7. Configurar Rocket.Chat
+### 8. Configurar Rocket.Chat
 ```bash
 sudo useradd -r -m -U -d /opt/rocketchat -s /usr/sbin/nologin rocketchat
 cd /opt/rocket.chat
 sudo chown -R rocketchat:rocketchat /opt/rocket.chat
 ```
 
-### 8. Crear servicio systemd
+### 9. Crear servicio systemd
 ```bash
 sudo nano /etc/systemd/system/rocketchat.service
 ```
