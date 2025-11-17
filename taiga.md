@@ -9,7 +9,7 @@ Requisitos (sudo):
 
 1) Preparar el servidor
 ```
-sudo apt update && sudo apt upgrade -y
+sudo apt update && sudo apt upgrade -y ✔️(Validado por Coder Nacho)
 sudo apt install -y git curl build-essential python3 python3-venv python3-pip \
     libpq-dev postgresql postgresql-contrib redis-server nginx certbot python3-certbot-nginx
     sudo apt install -y python3-dev

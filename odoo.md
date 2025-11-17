@@ -15,7 +15,10 @@ sudo apt upgrade -y
 ```bash
 sudo apt install git python3-pip python3-dev python3-venv python3-wheel libxslt1-dev libzip-dev libldap2-dev libsasl2-dev python3-setuptools node-less libjpeg-dev zlib1g-dev libpq-dev libxml2-dev libxslt1-dev libldap2-dev libtiff5-dev libjpeg8-dev libopenjp2-7-dev liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev libxcb1-dev wkhtmltopdf -y
 ```
-
+Instalar nodejs y npm
+```bash
+sudo apt -y install nodejs npm
+```
 ## 3. Crear usuario Odoo
 ```bash
 sudo useradd -m -d /opt/odoo -U -r -s /bin/bash odoo

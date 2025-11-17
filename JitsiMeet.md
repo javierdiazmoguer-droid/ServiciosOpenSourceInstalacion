@@ -5,8 +5,8 @@ Este repositorio servirá para documentar la instalación y puesta en funcionami
 ## Requerimientos iniciales
 
 * **Ubuntu Server 24.04**
-* **RAM:** more than 8GB
-* **CPU:** Para un servidor básico, 4 núcleos sería suficiente
+* **RAM:** 8GB o más.
+* **CPU:** Para un servidor básico, 4 núcleos sería suficiente.
 * **Espacio en disco:** al menos 20GB de espacio disponble en discos SSD.
 
 ## Pasos de preparación de requisitos
@@ -21,7 +21,23 @@ sudo apt update
 
 sudo hostnamectl set-hostname meet.sansebastian.org
 sudo nano /etc/hosts
-Add 127.0.1.1 meet.sansebastian.org & save & exit
+
+Add 192.168.0.1 meet.sansebastian.org & save & exit
+```
+> **OJO**: Hay que tener en cuenta que la dirección asociada al hostname no puede ser de loopback para que el servidor resuelva las solicitudes.
+
+## Instalación de OpenJDK17
+```bash
+wget https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_linux-x64_bin.tar.gz
+tar -xvzf openjdk-17.0.2_linux-x64_bin.tar.gz
+
+sudo mv jdk-17.0.2 /opt/
+
+sudo nano /etc/profile.d/jdk17.sh
+export JAVA_HOME=/opt/jdk-17.0.2
+export PATH=$JAVA_HOME/bin:$PATH
+
+source /etc/profile.d/jdk17.sh
 ```
 
 ## Añadir repositorios
