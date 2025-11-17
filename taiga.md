@@ -9,9 +9,9 @@ Requisitos (sudo):
 
 1) Preparar el servidor
 ```
-sudo apt update && sudo apt upgrade -y (Validado por Coder Nacho)
+sudo apt update && sudo apt upgrade -y ✔️(Validado por Coder Nacho)
 sudo apt install -y git curl build-essential python3 python3-venv python3-pip \
-    libpq-dev postgresql postgresql-contrib redis-server nginx certbot python3-certbot-nginx
+    libpq-dev postgresql postgresql-contrib redis-server nginx certbot python3-certbot-nginx ✔️ (Validado por Coder Nacho)
 ```
 
 2) Crear usuario de sistema para Taiga
