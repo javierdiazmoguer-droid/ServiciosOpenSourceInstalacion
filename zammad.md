@@ -5,7 +5,7 @@
 - Mínimo 6GB o 10GB RAM si quieres Elasticsearch en el mismo servidor
 - 2 CPUs
 - 20GB espacio en disco
-- Privilegios de superusuario
+- Privilegios de superusuario (sudo)
 
 ## Pasos de instalación
 
