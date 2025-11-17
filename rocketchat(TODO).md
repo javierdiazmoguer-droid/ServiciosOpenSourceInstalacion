@@ -89,4 +89,40 @@ sudo systemctl enable rocketchat
 sudo systemctl status rocketchat
 ```
 
+### 10. Instalar
+```bash
+sudo apt install -y nginx
+sudo ufw allow 'Nginx Full'
+sudo ufw reload
+```
+
+### 11. Configurar Nginx como proxy inverso
+```bash
+sudo nano /etc/nginx/sites-available/rocketchat
+```
+```nginx
+server {
+    listen 80;
+    server_name TU_DOMINIO_O_IP;
+
+    location / {
+        proxy_pass http://localhost:3000/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+### 12. habilitar el sitio
+```bash
+sudo ln -s /etc/nginx/sites-available/rocketchat /etc/nginx/sites-enabled/rocketchat
+sudo nginx -t
+sudo systemctl restart nginx
+```
+
 Acceder a `http://localhost:3000`
