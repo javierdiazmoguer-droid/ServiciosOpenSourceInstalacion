@@ -63,14 +63,19 @@ sudo nano /etc/systemd/system/rocketchat.service
 Añadir contenido:
 ```ini
 [Unit]
-Description=Rocket.Chat
-After=network.target mongodb.service
+Description=Rocket.Chat server
+After=network.target mongod.target
 
 [Service]
-ExecStart=/usr/bin/node /opt/rocket.chat/main.js
-Restart=always
+Type=simple
 User=rocketchat
-Environment="PORT=3000" "MONGO_URL=mongodb://localhost:27017/rocketchat"
+Group=rocketchat
+WorkingDirectory=/opt/Rocket.Chat
+ExecStart=/usr/bin/node main.js
+Restart=always
+Environment=ROOT_URL=http://TU_IP:3000
+Environment=MONGO_URL=mongodb://localhost:27017/rocketchat
+Environment=PORT=3000
 
 [Install]
 WantedBy=multi-user.target
@@ -78,8 +83,10 @@ WantedBy=multi-user.target
 
 ### 9. Iniciar servicio
 ```bash
+sudo systemctl daemon-reload
 sudo systemctl start rocketchat
 sudo systemctl enable rocketchat
+sudo systemctl status rocketchat
 ```
 
 Acceder a `http://localhost:3000`
