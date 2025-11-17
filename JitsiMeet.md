@@ -22,7 +22,7 @@ sudo apt update
 sudo hostnamectl set-hostname meet.sansebastian.org
 sudo nano /etc/hosts
 
-Add 127.0.1.1 meet.sansebastian.org & save & exit
+Add 192.168.0.1 meet.sansebastian.org & save & exit
 ```
 > **OJO**: Hay que tener en cuenta que la dirección asociada al hostname no puede ser de loopback para que el servidor resuelva las solicitudes.
 
