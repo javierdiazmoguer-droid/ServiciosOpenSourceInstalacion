@@ -103,6 +103,7 @@ Nota: usa contraseñas seguras y, si procede, restringe acceso por host.
 
 2. Habilitar el sitio y módulos necesarios:
     ```
+    sudo a2dissite 000-default.conf
     sudo a2ensite glpi.conf
     sudo a2enmod rewrite
     sudo systemctl reload apache2
