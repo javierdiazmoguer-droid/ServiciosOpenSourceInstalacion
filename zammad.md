@@ -58,7 +58,7 @@ ss -tulpn | grep 3000
 
 ### 7. Acceder a Zammad
 - Abrir navegador web
-- Acceder a: `http://localhost:3000`
+- Acceder a: `(http://IP_DEL_SERVIDOR:3000)`
 - Completar el asistente de configuración inicial
 
 ## Configuración inicial
