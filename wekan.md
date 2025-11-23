@@ -28,14 +28,21 @@ sudo apt install -y nodejs
 ```
 
 ## Paso 4: Instalar MongoDB
+### Añadir clave GPG y repo oficial de MongoDB (Ubuntu 24.04 "noble")
 
 ```bash
-curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | sudo gpg --dearmor -o /usr/share/keyrings/mongodb-archive-keyring.gpg
-echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc \
+  | gpg --dearmor \
+  | sudo tee /usr/share/keyrings/mongodb-archive-keyring.gpg > /dev/null
+
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/7.0 multiverse" \
+  | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+
 sudo apt update
 sudo apt install -y mongodb-org
-sudo systemctl start mongod
-sudo systemctl enable mongod
+
+sudo systemctl enable --now mongod
+sudo systemctl status mongod --no-pager
 ```
 
 ## Paso 5: Descargar e Instalar Wekan
