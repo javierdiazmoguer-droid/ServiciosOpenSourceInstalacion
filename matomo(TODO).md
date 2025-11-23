@@ -108,10 +108,11 @@ sudo nano /etc/php/8.x/fpm/php.ini   # ajustar según la versión instalada
 # memory_limit = 512M
 # max_execution_time = 300
 # upload_max_filesize = 20M
+# post_max_size = 20M
 ```
 Luego reiniciar PHP-FPM:
 ```bash
-sudo systemctl restart php8.x-fpm   # ajustar versión
+sudo systemctl restart php8.2-fpm   # ajustar versión
 ```
 
 ## 8) Ejecutar el instalador web de Matomo
