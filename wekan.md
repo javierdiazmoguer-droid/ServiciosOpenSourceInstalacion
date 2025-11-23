@@ -79,3 +79,25 @@ sudo snap services wekan
 ```
 
 Acceder en: `http://localhost:3000`
+
+## Paso 8: Verificación y firewall
+
+### Verificar que Wekan está corriendo (snap o manual)
+```bash
+ss -tulpn | grep -E '3000|80|443' || sudo snap services wekan
+```
+
+### Si usas UFW y ejecutas Wekan en 3000:
+```bash
+sudo ufw allow 3000/tcp
+```
+
+### Si usas proxy inverso (Nginx) o snap configurado para puerto 80/443:
+```bash
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+```
+
+# Acceso:
+### Si accedes desde la misma máquina: http://localhost:3000 (o http://localhost si configuraste puerto 80)
+### Desde otra máquina: http://IP_DEL_SERVIDOR:3000  (o http://IP_DEL_SERVIDOR si usas puerto 80)
