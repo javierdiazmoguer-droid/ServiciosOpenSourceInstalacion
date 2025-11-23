@@ -33,6 +33,9 @@ Apuntar al socket correcto en la configuración de Nginx (ver sección de Nginx)
 ## 4) Configurar MariaDB (crear base de datos y usuario)
 Acceder a MariaDB y crear DB y usuario seguros:
 ```bash
+#Ejecutar el script de seguridad
+Ejecutar el script de seguridad:
+
 sudo mysql -u root
 
 # dentro del cliente MariaDB:
