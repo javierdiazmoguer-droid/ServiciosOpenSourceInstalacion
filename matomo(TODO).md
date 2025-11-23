@@ -6,6 +6,10 @@ Resumen: esta guía instala Matomo usando Nginx + PHP-FPM + MariaDB en Ubuntu 24
 - Usuario con privilegios sudo.
 - Dominio apuntando al servidor (opcional para HTTPS).
 - Puerto 80/443 accesibles (UFW/Cloud rules).
+```bash
+sudo apt install -y chrony
+sudo systemctl enable chrony --now
+```
 
 ## 2) Actualizar sistema
 ```bash
