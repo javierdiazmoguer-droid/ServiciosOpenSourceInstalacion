@@ -20,7 +20,7 @@ Esta documentación describe los pasos para instalar y configurar GLPI (Gestión
 
 2. Instalar utilidades básicas:
     ```
-    sudo apt install -y wget curl unzip gnupg lsb-release software-properties-common
+    sudo apt install -y wget curl unzip tar gnupg lsb-release software-properties-common
     ```
 
 ---
