@@ -75,6 +75,7 @@ ghost --version
 Instala Ghost dentro de `/var/www/ghost` ejecutando como el usuario `ghost` (o como tu usuario con permisos sobre el directorio).
 
 ```bash
+sudo chown -R ghost:ghost /var/www/ghost
 sudo -u ghost -H bash
 cd /var/www/ghost
 ```
