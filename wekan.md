@@ -78,7 +78,26 @@ sudo systemctl start mongod
 ## Paso 8: Iniciar Wekan
 
 ```bash
-sudo npm start
+sudo nano /etc/systemd/system/wekan.service
+
+Contenido:
+[Unit]
+Description=Wekan Server
+After=network.target mongod.service
+
+[Service]
+Type=simple
+User=wekan
+EnvironmentFile=/opt/wekan/.env
+ExecStart=/usr/bin/node /opt/wekan/main.js
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+Habilitar:
+sudo systemctl daemon-reload
+sudo systemctl enable --now wekan
 ```
 
 Acceder en: `http://localhost:3000`
