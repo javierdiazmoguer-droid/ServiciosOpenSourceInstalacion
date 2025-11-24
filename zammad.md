@@ -27,7 +27,7 @@ sudo ufw reload
 
 ### 2. Instalar dependencias
 ```bash
-sudo apt install wget apt-transport-https gnupg2 -y
+sudo apt install wget curl gnupg2 software-properties-common apt-transport-https -y
 ```
 
 ### 3. Añadir repositorio de Zammad
