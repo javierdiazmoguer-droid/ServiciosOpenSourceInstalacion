@@ -60,7 +60,7 @@ npm -v
 Ghost CLI facilita la instalación y administración de Ghost.
 
 ```bash
-sudo npm install -g ghost-cli@latest --unsafe-perm
+sudo npm install -g ghost-cli@latest
 ```
 
 Verifica la instalación:
