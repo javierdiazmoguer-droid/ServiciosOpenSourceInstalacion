@@ -24,9 +24,10 @@ sudo apt update && sudo apt upgrade -y
 Es buena práctica ejecutar Ghost con un usuario no root. Se crea el usuario `ghost` y se le da ownership del directorio de trabajo:
 
 ```bash
-sudo adduser --system --group --disabled-login ghost
+sudo adduser --system --quiet --group --shell /bin/false ghost
 sudo mkdir -p /var/www/ghost
 sudo chown ghost:ghost /var/www/ghost
+sudo chmod 775 /var/www/ghost
 ```
 
 ## 3. Instalar dependencias del sistema
