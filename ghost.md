@@ -142,10 +142,15 @@ server {
     server_name tu_dominio.com www.tu_dominio.com;
 
     location / {
-        proxy_set_header   X-Real-IP $remote_addr;
-        proxy_set_header   Host      $http_host;
-        proxy_pass         http://127.0.0.1:2368;
-    }
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header Host $http_host;
+
+    proxy_redirect off;
+    proxy_pass http://127.0.0.1:2368;
+}
 
     access_log /var/log/nginx/ghost_access.log;
     error_log  /var/log/nginx/ghost_error.log;
