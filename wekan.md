@@ -23,7 +23,7 @@ sudo apt install -y curl wget git build-essential
 ## Paso 3: Instalar Node.js y npm
 
 ```bash
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt install -y nodejs
 ```
 
@@ -42,9 +42,11 @@ sudo systemctl enable mongod
 
 ```bash
 cd /opt
-sudo git clone https://github.com/wekan/wekan.git
+sudo wget https://releases.wekan.team/wekan-latest.zip
+sudo apt install -y unzip
+sudo unzip wekan-latest.zip -d wekan
 cd wekan
-sudo npm install
+sudo npm install --production
 ```
 
 ## Paso 6: Configurar Wekan
@@ -57,16 +59,59 @@ sudo nano .env
 
 Agregar:
 
+```MONGO_URL=mongodb://localhost:27017/wekan
+MONGO_OPLOG_URL=mongodb://localhost:27017/local?replicaSet=rs0
+ROOT_URL=http://localhost:8080
+PORT=8080
+MAIL_URL=smtp://localhost
 ```
-MONGO_URL=mongodb://localhost:27017/wekan
-ROOT_URL=http://localhost:3000
-PORT=3000
-```
-
-## Paso 7: Iniciar Wekan
+## Paso 7: ACTIVAR REPLICASET
 
 ```bash
-sudo npm start
+sudo systemctl stop mongod
+sudo mongod --dbpath /var/lib/mongodb --replSet rs0 --bind_ip_all &
+sleep 5
+mongosh --eval "rs.initiate()"
+sudo systemctl start mongod
 ```
 
-Acceder en: `http://localhost:3000`
+## Paso 8: Iniciar Wekan
+
+```bash
+sudo nano /etc/systemd/system/wekan.service
+
+Contenido:
+[Unit]
+Description=Wekan Server
+After=network.target mongod.service
+
+[Service]
+Type=simple
+User=wekan
+EnvironmentFile=/opt/wekan/.env
+ExecStart=/usr/bin/node /opt/wekan/main.js
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+Habilitar:
+sudo systemctl daemon-reload
+sudo systemctl enable --now wekan
+```
+## Paso 9: Configuración mínima de Nginx
+```bash
+server {
+    listen 80;
+    server_name tu_dominio.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+Acceder en: `http://localhost:8080`
