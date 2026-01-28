@@ -56,6 +56,7 @@ production:
 ## 6. Instalar gemas y configurar la base de datos
 ```bash
 gem install bundler
+sudo apt install -y libssl-dev zlib1g-dev libpq-dev
 bundle install --without development test
 bundle exec rake generate_secret_token
 RAILS_ENV=production bundle exec rake db:migrate
@@ -64,9 +65,18 @@ RAILS_ENV=production bundle exec rake redmine:load_default_data
 
 ## 7. Configurar Passenger y Nginx
 ```bash
-sudo apt install -y nginx passenger
+sudo apt install -y libnginx-mod-http-passenger
 gem install passenger
-sudo passenger-install-nginx-module
+sudo nano /etc/nginx/sites-available/redmine.conf
+<VirtualHost *:80>
+    ServerName redmine.local
+    DocumentRoot /opt/redmine/public
+    <Directory /opt/redmine/public>
+        AllowOverride all
+        Options -MultiViews
+        Require all granted
+    </Directory>
+</VirtualHost>
 ```
 
 ## 8. Iniciar servicios
